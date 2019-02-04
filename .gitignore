@@ -1,0 +1,10 @@
+Binaries/
+Diagnosis/
+LastUser.set
+Temp/
+artei.set
+kkomorochkin.set
+testskif.isopen
+
+*.sublime-workspace
+*.sublime-project

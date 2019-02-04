@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio Version=4.5.2.102?>
+<Hardware xmlns="http://br-automation.co.at/AS/Hardware">
+  <Module Name="5AC902.BX01-00" Type="5AC902.BX01-00" Version="1.1.1.0">
+    <Connection Connector="SY" TargetModule="5PC901_TS77_00" TargetConnector="SY3" />
+  </Module>
+  <Module Name="5AP1120.1043-000" Type="5AP1120.1043-000" Version="1.3.0.0" />
+  <Module Name="5PC901_TS77_00" Type="5PC901.TS77-00" Version="2.0.0.0">
+    <Connection Connector="SY" TargetModule="5AP1120.1043-000" TargetConnector="SY1" />
+  </Module>
+</Hardware>
