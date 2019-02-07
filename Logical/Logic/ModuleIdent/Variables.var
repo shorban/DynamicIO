@@ -1,0 +1,10 @@
+VAR
+	GetInfo : DiagCreateInfo;
+	Ident : UDINT;
+	GetNumInfo : DiagGetNumInfo;
+	GetStrInfo : DiagGetStrInfo;
+	InfoDesc : STRING[80];
+	start : BOOL;
+	ConnectedModuleList : ARRAY[0..9] OF STRING[80];
+	i : USINT;
+END_VAR

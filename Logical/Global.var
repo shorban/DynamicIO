@@ -1,8 +1,5 @@
-
 VAR
-
-END_VAR
-
-VAR CONSTANT
-
+	X20DIF371 : Module_typ;
+	DI : ARRAY[0..15] OF BOOL;
+	DigOut : ARRAY[0..15] OF BOOL;
 END_VAR
