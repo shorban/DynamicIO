@@ -11,5 +11,6 @@
     <Object Type="Library" Language="binary" Description="The DataObj library can be used to dynamically create, dynamically delete and copy data objects, etc. ">DataObj</Object>
     <Object Type="Library" Language="binary" Description="The AsXml library supports reading and writing of XML files.">AsXml</Object>
     <Object Type="Library" Language="binary" Description="The FileIO library provides function blocks for file handling.">FileIO</Object>
+    <Object Type="Library" Language="binary" Description="The AsIODiag library provides functions for creating and evaluating I/O module information.">AsIODiag</Object>
   </Objects>
 </Package>

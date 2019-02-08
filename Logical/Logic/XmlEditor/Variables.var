@@ -1,0 +1,29 @@
+VAR
+	IOMMCopy : AsIOMMCopy;
+	DataObjName : STRING[80];
+	BR_ModuleName : STRING[80];
+	DO_Create : DatObjCreate;
+	DO_Read : DatObjRead;
+	DO_Delete : DatObjDelete;
+	DO_Info : DatObjInfo;
+	FileName : STRING[80];
+	CfgReadStep : ReadCfg_enum;
+	FW_Step : FileMgrStep_enum;
+	Start : BOOL;
+	fCreate : FileCreate;
+	fOpen : FileOpen;
+	fClose : FileClose;
+	fRead : FileRead;
+	fWrite : FileWrite;
+	fIdent : UDINT;
+	Buff : STRING[80];
+	CreateMemoryReader : xmlCreateMemoryReader;
+	ReadNextNode : xmlReadNextNode;
+	ReadAttributeNr : xmlReadAttributeNr;
+	NodeName : STRING[80];
+	NodeValue : STRING[80];
+	XmlNode : ARRAY[0..254] OF XmlNode_type;
+	attrNr : USINT;
+	NodeNr : USINT;
+	CloseMemoryReader : xmlCloseMemoryReader;
+END_VAR
