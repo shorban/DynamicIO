@@ -65,7 +65,11 @@ void _CYCLIC ProgramCyclic(void)
 			ReadNextNode.pValue		= (UDINT) &XmlNode[NodeNr].NodeValue;
 			ReadNextNode.valueSize	= sizeof(XmlNode[NodeNr].NodeValue);
 			xmlReadNextNode(&ReadNextNode);
-			if(ReadNextNode.status == ERR_OK)
+			if(NodeNr>253)
+			{
+				CfgReadStep	= WriteXML;
+			}
+			else if(ReadNextNode.status == ERR_OK)
 			{
 				attrNr	= 0;
 				ReadNextNode.enable	= FALSE;
@@ -161,8 +165,8 @@ void _CYCLIC ProgramCyclic(void)
 						CfgReadStep	= DeleteDataObject;
 					}
 					break;
-
 			}
+			break;
 		
 		case DeleteDataObject:
 			DO_Delete.enable	= TRUE;
