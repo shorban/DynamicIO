@@ -1,5 +1,7 @@
 VAR
-	X20DIF371 : Module_typ;
+	X20DIF371 : Module_type;
 	DI : ARRAY[0..15] OF BOOL;
 	DigOut : ARRAY[0..15] OF BOOL;
+	HW_config : Module_type;
+	New_Variable : {REDUND_UNREPLICABLE} USINT := 4;
 END_VAR

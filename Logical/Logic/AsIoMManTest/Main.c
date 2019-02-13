@@ -24,9 +24,9 @@ void _CYCLIC ProgramCyclic(void)
 			break;
 		
 		case CopyCfg:
-			IOMMCopy.enable	=	TRUE;
-			IOMMCopy.pModuleName	=	&BR_ModuleName;
-			IOMMCopy.pNewModule		= 	&DataObjName;
+			IOMMCopy.enable			= TRUE;
+			IOMMCopy.pModuleName	= &BR_ModuleName;
+			IOMMCopy.pNewModule		= &DataObjName;
 			AsIOMMCopy(&IOMMCopy);
 			if(IOMMCopy.status == ERR_OK)
 			{
@@ -49,9 +49,9 @@ void _CYCLIC ProgramCyclic(void)
 			{
 			
 				case CREATE:
-					fCreate.enable = TRUE;
+					fCreate.enable	= TRUE;
 					fCreate.pDevice = (UDINT) "root";
-					fCreate.pFile = &FileName;
+					fCreate.pFile 	= &FileName;
 					FileCreate(&fCreate);
 					if(fCreate.status == ERR_OK)
 					{
@@ -65,9 +65,9 @@ void _CYCLIC ProgramCyclic(void)
 					break;
 			
 				case OPEN:
-					fOpen.pDevice	=	(UDINT) "root";//= fCreate.pDevice;
-					fOpen.pFile	= &FileName;//fCreate.pFile;
-					fOpen.mode	= FILE_RW;
+					fOpen.pDevice	= (UDINT) "root";//= fCreate.pDevice;
+					fOpen.pFile		= &FileName;//fCreate.pFile;
+					fOpen.mode		= FILE_RW;
 					fOpen.enable	= TRUE;
 					FileOpen(&fOpen);
 					if(fOpen.status == ERR_OK)

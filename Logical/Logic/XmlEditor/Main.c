@@ -24,14 +24,14 @@ void _CYCLIC ProgramCyclic(void)
 			break;
 		
 		case CopyCfg:
-			IOMMCopy.enable	=	TRUE;
-			IOMMCopy.pModuleName	=	&BR_ModuleName;
-			IOMMCopy.pNewModule		= 	&DataObjName;
+			IOMMCopy.enable			= TRUE;
+			IOMMCopy.pModuleName	= &BR_ModuleName;
+			IOMMCopy.pNewModule		= &DataObjName;
 			IOMMCopy.memType		= doTEMP;
 			AsIOMMCopy(&IOMMCopy);
 			if(IOMMCopy.status == ERR_OK)
 			{
-				CfgReadStep	= GetDatObjData;	
+				CfgReadStep			= GetDatObjData;	
 			}
 			break;
 		
@@ -46,21 +46,21 @@ void _CYCLIC ProgramCyclic(void)
 			break;
 		
 		case CreateMemReader:
-			CreateMemoryReader.enable	= TRUE;
+			CreateMemoryReader.enable		= TRUE;
 			CreateMemoryReader.pXmlMemory	= DO_Info.pDatObjMem;
 			CreateMemoryReader.memorySize	= DO_Info.len;
 			xmlCreateMemoryReader(&CreateMemoryReader);
 			if(CreateMemoryReader.status == ERR_OK)
 			{
-				CfgReadStep	= ReadXmlNode;	
-				NodeNr = 0;
+				CfgReadStep			= ReadXmlNode;	
+				NodeNr 				= 0;
 				ReadNextNode.enable	= TRUE;
 			}
 			break;
 		
 		case ReadXmlNode:
-			ReadNextNode.ident	= CreateMemoryReader.ident;
-			ReadNextNode.pName	= (UDINT) &XmlNode[NodeNr].NodeName;
+			ReadNextNode.ident		= CreateMemoryReader.ident;
+			ReadNextNode.pName		= (UDINT) &XmlNode[NodeNr].NodeName;
 			ReadNextNode.nameSize	= sizeof(XmlNode[NodeNr].NodeName);
 			ReadNextNode.pValue		= (UDINT) &XmlNode[NodeNr].NodeValue;
 			ReadNextNode.valueSize	= sizeof(XmlNode[NodeNr].NodeValue);
@@ -71,9 +71,9 @@ void _CYCLIC ProgramCyclic(void)
 			}
 			else if(ReadNextNode.status == ERR_OK)
 			{
-				attrNr	= 0;
+				attrNr				= 0;
 				ReadNextNode.enable	= FALSE;
-				CfgReadStep	= ReadXmlNodeAttributes;	
+				CfgReadStep			= ReadXmlNodeAttributes;	
 			}
 			else if(ReadNextNode.status == xmlERR_NO_FURTHER_XML_NODE)
 			{
@@ -85,12 +85,12 @@ void _CYCLIC ProgramCyclic(void)
 		case ReadXmlNodeAttributes:
 			if(attrNr < ReadNextNode.attributeCount)
 			{
-				ReadAttributeNr.ident	= ReadNextNode.ident;
-				ReadAttributeNr.enable	=	TRUE;
-				ReadAttributeNr.index	= attrNr;
-				ReadAttributeNr.pName	= (UDINT) &XmlNode[NodeNr].NodeAttr[attrNr].AttrName;
+				ReadAttributeNr.ident		= ReadNextNode.ident;
+				ReadAttributeNr.enable		= TRUE;
+				ReadAttributeNr.index		= attrNr;
+				ReadAttributeNr.pName		= (UDINT) &XmlNode[NodeNr].NodeAttr[attrNr].AttrName;
 				ReadAttributeNr.nameSize	= sizeof(XmlNode[NodeNr].NodeAttr[attrNr].AttrName);
-				ReadAttributeNr.pValue	= (UDINT) &XmlNode[NodeNr].NodeAttr[attrNr].AttrValue;
+				ReadAttributeNr.pValue		= (UDINT) &XmlNode[NodeNr].NodeAttr[attrNr].AttrValue;
 				ReadAttributeNr.valueSize	= sizeof(XmlNode[NodeNr].NodeAttr[attrNr].AttrValue);
 				xmlReadAttributeNr(&ReadAttributeNr);
 				if(ReadAttributeNr.status	==	ERR_OK)
@@ -103,7 +103,7 @@ void _CYCLIC ProgramCyclic(void)
 			{
 				NodeNr++;
 				ReadNextNode.enable	= TRUE;
-				CfgReadStep	= ReadXmlNode;
+				CfgReadStep			= ReadXmlNode;
 			}
 			break;
 		
@@ -115,9 +115,9 @@ void _CYCLIC ProgramCyclic(void)
 			{
 			
 				case CREATE:
-					fCreate.enable = TRUE;
+					fCreate.enable	= TRUE;
 					fCreate.pDevice = (UDINT) "root";
-					fCreate.pFile = &FileName;
+					fCreate.pFile	= &FileName;
 					FileCreate(&fCreate);
 					if(fCreate.status == ERR_OK)
 					{
@@ -132,8 +132,8 @@ void _CYCLIC ProgramCyclic(void)
 			
 				case OPEN:
 					fOpen.pDevice	=	(UDINT) "root";//= fCreate.pDevice;
-					fOpen.pFile	= &FileName;//fCreate.pFile;
-					fOpen.mode	= FILE_RW;
+					fOpen.pFile		= &FileName;//fCreate.pFile;
+					fOpen.mode		= FILE_RW;
 					fOpen.enable	= TRUE;
 					FileOpen(&fOpen);
 					if(fOpen.status == ERR_OK)
@@ -185,7 +185,7 @@ void _CYCLIC ProgramCyclic(void)
 			if(CloseMemoryReader.status == ERR_OK)
 			{
 				CfgReadStep	= Wait;
-				Start	= FALSE;
+				Start		= FALSE;
 			}
 			break;
 		

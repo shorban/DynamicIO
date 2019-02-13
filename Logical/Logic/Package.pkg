@@ -6,5 +6,6 @@
     <Object Type="Program" Language="ANSIC">AsIoMManTest</Object>
     <Object Type="Program" Language="ANSIC">XmlConfigTest</Object>
     <Object Type="Program" Language="ANSIC">XmlEditor</Object>
+    <Object Type="Program" Language="ANSIC">IomapParser</Object>
   </Objects>
 </Package>
