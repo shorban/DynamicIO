@@ -6,6 +6,22 @@
 	#include <AsDefault.h>
 #endif
 
+void  ID_parser(STRING* pParsedStr,STRING* pChannelType,STRING* pChannelPath,STRING* pChannelName)
+{
+	UDINT i;
+	for(i = strlen(pParsedStr);i > 0; i-- )
+	{
+		if(pParsedStr[i] == 46)	
+		{
+			memcpy(pChannelType,&pParsedStr[0],3);
+			memcpy(pChannelPath,&pParsedStr[4],i-4);
+			memcpy(pChannelName,&pParsedStr[i+1],strlen(pParsedStr)-i);
+			break;
+		}
+	}
+}
+
+
 void _INIT ProgramInit(void)
 {
 	Start		= FALSE;
@@ -116,10 +132,6 @@ void _CYCLIC ProgramCyclic(void)
 				}
 				else if( (strcmp(&XmlNode.NodeName,(UDINT) "Prod") == 0 ) && ( ReadNextNode.attributeCount != 0 ) )
 				{
-					CfgReadStep	= READ_PROD_ATTR;
-				}
-				else if( (strcmp(&XmlNode.NodeName,(UDINT) "Cons") == 0 ) && ( ReadNextNode.attributeCount != 0 ) )
-				{
 					CfgReadStep	= READ_CONS_ATTR;
 				}
 				else
@@ -135,7 +147,7 @@ void _CYCLIC ProgramCyclic(void)
 			break;
 		
 		case READ_LN_ATTR:
-			if(attrNr < ReadNextNode.attributeCount)
+			for(attrNr = 0;attrNr < ReadNextNode.attributeCount;attrNr++)
 			{
 				ReadAttributeNr.enable		= TRUE;
 				ReadAttributeNr.ident		= ReadNextNode.ident;
@@ -157,19 +169,12 @@ void _CYCLIC ProgramCyclic(void)
 					{
 						strcpy(LinkNode.Type,XmlNode.NodeAttr.AttrValue);
 					}
-					
-					attrNr++;
 				}
-				
 			}
-			else
-			{
-				attrNr		= 0;
-				CfgReadStep	= READ_NEXT_NODE;
-			}
+			CfgReadStep	= READ_NEXT_NODE;
 			break;
 		
-		case READ_PROD_ATTR:
+/*		case READ_PROD_ATTR:
 			if(attrNr < ReadNextNode.attributeCount)
 			{
 				ReadAttributeNr.enable		=	TRUE;
@@ -206,9 +211,9 @@ void _CYCLIC ProgramCyclic(void)
 				CfgReadStep	= READ_NEXT_NODE;
 			}
 			break;
-		
+*/		
 		case READ_CONS_ATTR:
-			if( attrNr < ReadNextNode.attributeCount )
+			for(attrNr =0; attrNr < ReadNextNode.attributeCount; attrNr++)
 			{
 				ReadAttributeNr.enable		= TRUE;
 				ReadAttributeNr.ident		= ReadNextNode.ident;
@@ -234,15 +239,9 @@ void _CYCLIC ProgramCyclic(void)
 					{
 						strcpy(LinkNode.Cons.Kind,XmlNode.NodeAttr.AttrValue);
 					}
-					
-					attrNr++;
 				}
 			}
-			else
-			{
-				attrNr		= 0;
 				CfgReadStep	= READ_NEXT_NODE;
-			}
 			break;
 		
 		
